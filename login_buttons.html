@@ -1,0 +1,38 @@
+<!--
+    NOTE: You shouldn't use these templates directly. Instead, use the global
+    {{loginButtons}} template.}}
+  -->
+
+<template name="_loginButtons">
+  <div id="login-buttons">
+    {{#if currentUser}}
+      {{> _loginButtonsLoggedIn}}
+    {{else}}
+      {{> _loginButtonsLoggedOut}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="_loginButtonsLoggedIn">
+  {{> _loginButtonsLoggedInFull}}
+</template>
+
+<template name="_loginButtonsLoggedOut">
+  {{#if services}} {{! if at least one service is configured }}
+    {{#if configurationLoaded}}
+      {{> _loginButtonsLoggedOutFull}}
+    {{/if}}
+  {{else}}
+    <div class="no-services">No login services configured</div>
+  {{/if}}
+</template>
+
+<!-- used in various places to display messages to user -->
+<template name="_loginButtonsMessages">
+  {{#if errorMessage}}
+    <div class="alert alert-error">{{errorMessage}} <a class="close" data-dismiss="alert" href="#">&times;</a></div>
+  {{/if}}
+  {{#if infoMessage}}
+    <div class="alert alert-info">{{infoMessage}}</div>
+  {{/if}}
+</template>
